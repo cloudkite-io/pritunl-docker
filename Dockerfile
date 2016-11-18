@@ -1,7 +1,7 @@
 FROM alpine:3.4
 MAINTAINER Victor Trac <victor@cloudkite.io>
 
-ENV VERSION="1.25.1134.24"
+ENV VERSION="1.25.1158.92"
 
 # Build deps
 RUN apk --no-cache add --update go git bzr wget py-pip \ 
@@ -29,6 +29,7 @@ RUN wget https://github.com/pritunl/pritunl/archive/${VERSION}.tar.gz \
 
 ADD rootfs /
 
+EXPOSE 80
 EXPOSE 443
 EXPOSE 1194
 ENTRYPOINT ["/init"]

@@ -17,8 +17,9 @@ services:
     networks:
       - pritunl
     ports:
+      - "80:80"
       - "443:443"
-      - "1194:1194"
+      - "1194/udp:1194/udp"
     privileged: true
     restart: always
 
