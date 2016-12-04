@@ -12,7 +12,7 @@ Run Pritunl in a docker container.
     cd pritunl-docker
     docker-compose up --build
 
-The admin console is now available at https://<ip>, pritunl/pritunl.
+The admin console is now available at `https://<ip>`, `pritunl`/`pritunl`.
   
 ## Help
 Cloudkite is here to help. Feel free to reach out: https://cloudkite.io
