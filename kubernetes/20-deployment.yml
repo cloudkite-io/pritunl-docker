@@ -1,0 +1,25 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: pritunl
+  namespace: infrastructure
+spec:
+  template:
+    metadata:
+      labels:
+        app: pritunl
+    spec:
+      terminationGracePeriodSeconds: 60
+      containers:
+        - image: docker.io/victortrac/pritunl
+          name: pritunl
+          imagePullPolicy: Always
+          env:
+            - name: MONGODB_SERVER
+              value: "mongodb"
+          ports:
+            - containerPort: 80
+            - containerPort: 443
+            - containerPort: 1194
+          securityContext:
+            privileged: true

@@ -1,4 +1,4 @@
 #!/bin/sh
 
-pritunl set-mongodb mongodb://mongo:27017/pritunl
+pritunl set-mongodb mongodb://${MONGODB_SERVER:-"mongo"}:27017/pritunl
 pritunl start

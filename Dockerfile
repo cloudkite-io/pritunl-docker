@@ -1,10 +1,10 @@
-FROM alpine:3.4
+FROM alpine:3.5
 MAINTAINER Victor Trac <victor@cloudkite.io>
 
-ENV VERSION="1.25.1158.92"
+ENV VERSION="1.26.1209.89"
 
 # Build deps
-RUN apk --no-cache add --update go git bzr wget py-pip \ 
+RUN apk --no-cache add --update go git bzr wget py2-pip \ 
     gcc python python-dev musl-dev linux-headers libffi-dev openssl-dev \
     py-setuptools openssl procps ca-certificates openvpn 
     
