@@ -7,7 +7,7 @@
     {
       "autoDelete": true,
       "boot": true,
-      "deviceName": "vpn2-dev-rxwiki",
+      "deviceName": "vpn2-dev",
       "index": 0,
       "interface": "SCSI",
       "kind": "compute#attachedDisk",
@@ -15,7 +15,7 @@
         "projects/debian-cloud/global/licenses/debian-9-stretch"
       ],
       "mode": "READ_WRITE",
-      "source": "projects/cloudkite-dev/zones/us-central1-a/disks/vpn2-dev-rxwiki",
+      "source": "projects/cloudkite-dev/zones/us-central1-a/disks/vpn2-dev",
       "type": "PERSISTENT"
     }
   ],
@@ -23,7 +23,7 @@
   "kind": "compute#instance",
   "labelFingerprint": "42WmSpB8rSM=",
   "machineType": "projects/cloudkite-dev/zones/us-central1-a/machineTypes/g1-small",
-  "name": "vpn2-dev-rxwiki",
+  "name": "vpn2-dev",
   "networkInterfaces": [
     {
       "accessConfigs": [
@@ -46,7 +46,7 @@
     "onHostMaintenance": "MIGRATE",
     "preemptible": false
   },
-  "selfLink": "projects/cloudkite-dev/zones/us-central1-a/instances/vpn2-dev-rxwiki",
+  "selfLink": "projects/cloudkite-dev/zones/us-central1-a/instances/vpn2-dev",
   "serviceAccounts": [
     {
       "email": "900621600157-compute@developer.gserviceaccount.com",

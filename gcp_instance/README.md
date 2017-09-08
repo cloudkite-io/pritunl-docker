@@ -1,5 +1,9 @@
 # GCP instance setup
 
-* Create a minial instance at GCP ([example](vm_instance.json))
-* Assign network tag to the instance ([example](vm_instance.json))
-* Configure firewall rule that opens 1194/udp to the instance ([example](firewall_rule.json)).
+* Create a minial instance at GCP and assign network tag to the instance ([example REST](vm_instance.json))
+
+* Configure firewall rule that opens 1194/udp to the instance ([example REST](firewall_rule.json)).
+
+Helfull links:
+  https://cloud.google.com/compute/docs/vpc/firewalls
+  https://cloud.google.com/compute/docs/vpc/using-firewalls
