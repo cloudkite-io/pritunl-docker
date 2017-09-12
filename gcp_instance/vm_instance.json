@@ -1,0 +1,85 @@
+{
+  "canIpForward": false,
+  "cpuPlatform": "Intel Sandy Bridge",
+  "creationTimestamp": "2017-09-05T23:06:13.265-07:00",
+  "description": "",
+  "disks": [
+    {
+      "autoDelete": true,
+      "boot": true,
+      "deviceName": "vpn2-dev",
+      "index": 0,
+      "interface": "SCSI",
+      "kind": "compute#attachedDisk",
+      "licenses": [
+        "projects/debian-cloud/global/licenses/debian-9-stretch"
+      ],
+      "mode": "READ_WRITE",
+      "source": "projects/cloudkite-dev/zones/us-central1-a/disks/vpn2-dev",
+      "type": "PERSISTENT"
+    }
+  ],
+  "id": "8429699341660335802",
+  "kind": "compute#instance",
+  "labelFingerprint": "42WmSpB8rSM=",
+  "machineType": "projects/cloudkite-dev/zones/us-central1-a/machineTypes/g1-small",
+  "name": "vpn2-dev",
+  "networkInterfaces": [
+    {
+      "accessConfigs": [
+        {
+          "kind": "compute#accessConfig",
+          "name": "External NAT",
+          "natIP": "104.197.78.21",
+          "type": "ONE_TO_ONE_NAT"
+        }
+      ],
+      "kind": "compute#networkInterface",
+      "name": "nic0",
+      "network": "projects/cloudkite-dev/global/networks/default",
+      "networkIP": "10.128.0.2",
+      "subnetwork": "projects/cloudkite-dev/regions/us-central1/subnetworks/default"
+    }
+  ],
+  "scheduling": {
+    "automaticRestart": true,
+    "onHostMaintenance": "MIGRATE",
+    "preemptible": false
+  },
+  "selfLink": "projects/cloudkite-dev/zones/us-central1-a/instances/vpn2-dev",
+  "serviceAccounts": [
+    {
+      "email": "900621600157-compute@developer.gserviceaccount.com",
+      "scopes": [
+        "https://www.googleapis.com/auth/devstorage.read_only",
+        "https://www.googleapis.com/auth/logging.write",
+        "https://www.googleapis.com/auth/monitoring.write",
+        "https://www.googleapis.com/auth/servicecontrol",
+        "https://www.googleapis.com/auth/service.management.readonly",
+        "https://www.googleapis.com/auth/trace.append"
+      ]
+    }
+  ],
+  "startRestricted": false,
+  "status": "RUNNING",
+  "tags": {
+    "fingerprint": "ifmbRkpF0QE=",
+    "items": [
+      "accept-openvpn-connections",
+      "http-server",
+      "https-server"
+    ]
+  },
+  "zone": "projects/cloudkite-dev/zones/us-central1-a",
+  "metadata": {
+    "kind": "compute#metadata",
+    "fingerprint": "VAlQuShgi50=",
+    "items": [
+      {
+        "key": "startup-script",
+        "value": "git clone https://github.com/cloudkite-io/pritunl-docker\ncd pritunl-docker\ndocker-compose up --build"
+      }
+    ]
+  }
+}
+

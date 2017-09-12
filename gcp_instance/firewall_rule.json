@@ -1,0 +1,25 @@
+{
+  "allowed": [
+    {
+      "IPProtocol": "udp",
+      "ports": [
+        "1194"
+      ]
+    }
+  ],
+  "creationTimestamp": "2017-09-07T05:53:53.749-07:00",
+  "description": "This rule allows ingress packets under the udp protocal at 1194 port",
+  "direction": "INGRESS",
+  "id": "1109993682412306318",
+  "kind": "compute#firewall",
+  "name": "allow-openvpn-connections",
+  "network": "projects/cloudkite-dev/global/networks/default",
+  "priority": 1000,
+  "selfLink": "projects/cloudkite-dev/global/firewalls/allow-openvpn-connections",
+  "sourceRanges": [
+    "0.0.0.0/0"
+  ],
+  "targetTags": [
+    "accept-openvpn-connections"
+  ]
+}
