@@ -1,7 +1,7 @@
 FROM alpine:3.6
 MAINTAINER Victor Trac <victor@cloudkite.io>
 
-ENV VERSION="1.28.1545.95"
+ENV VERSION="1.29.1635.72"
 
 # Build deps
 RUN apk --no-cache add --update go git bzr wget py2-pip \ 
