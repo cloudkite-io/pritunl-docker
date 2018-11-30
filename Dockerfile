@@ -1,4 +1,4 @@
-FROM alpine:3.7
+FROM alpine:3.8
 MAINTAINER Victor Trac <victor@cloudkite.io>
 
 ENV VERSION="1.29.1705.7"
@@ -26,6 +26,9 @@ RUN wget https://github.com/pritunl/pritunl/archive/${VERSION}.tar.gz \
     && cd .. \
     && rm -rf *${VERSION}* \
     && rm -rf /tmp/* /var/cache/apk/*
+
+RUN sed -i -e '/^attributes/a prompt\t\t\t= yes' /etc/ssl/openssl.cnf
+RUN sed -i -e '/countryName_max/a countryName_value\t\t= US' /etc/ssl/openssl.cnf
 
 ADD rootfs /
 
