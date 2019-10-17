@@ -1,11 +1,11 @@
-FROM alpine:3.8
+FROM alpine:3.10
 MAINTAINER Victor Trac <victor@cloudkite.io>
 
-ENV VERSION="1.29.1705.7"
+ENV VERSION="1.29.2209.0"
 
 # Build deps
 RUN apk --no-cache add --update go git bzr wget py2-pip \ 
-    gcc python python-dev musl-dev linux-headers libffi-dev openssl-dev \
+    gcc python python-dev make musl-dev linux-headers libffi-dev openssl-dev \
     py-setuptools openssl procps ca-certificates openvpn 
     
 RUN pip install --upgrade pip 
@@ -13,7 +13,6 @@ RUN pip install --upgrade pip
 # Pritunl Install
 RUN export GOPATH=/go \
     && go get github.com/pritunl/pritunl-dns \
-    && go get github.com/pritunl/pritunl-monitor \
     && go get github.com/pritunl/pritunl-web \
     && cp /go/bin/* /usr/bin/ 
 
