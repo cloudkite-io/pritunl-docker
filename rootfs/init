@@ -1,4 +1,9 @@
 #!/bin/sh
 
 pritunl set-mongodb mongodb://${MONGODB_SERVER:-"mongo"}:27017/pritunl
+pritunl set app.server_port ${SERVER_PORT:-443}
+pritunl set app.acme_domain ${ACME_DOMAIN:""}
+pritunl set app.acme_timestamp $(date +%s)
+pritunl set app.acme_key "openssl genrsa 4096"
+pritunl set app.acme_renew 0
 pritunl start
