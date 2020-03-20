@@ -1,4 +1,18 @@
 #!/bin/sh
 
 pritunl set-mongodb mongodb://${MONGODB_SERVER:-"mongo"}:27017/pritunl
+
+# get actual port, get value from line and trim spaces
+actual_server_port=$(pritunl get app.server_port | cut -d "=" -f2 | awk '{$1=$1};1')
+if [[ "$actual_server_port" -ne "${SERVER_PORT:-443}" ]]; then
+    pritunl set app.server_port ${SERVER_PORT:-443}
+fi
+
+actual_acme_domain=$(pritunl get app.acme_domain | cut -d "=" -f2 | awk '{$1=$1};1')
+if [[ ! -z "${ACME_DOMAIN:""}" ]] && [[ "$actual_acme_domain" -ne "${ACME_DOMAIN}" ]] ; then
+    pritunl set app.acme_timestamp $(date +%s)
+    pritunl set app.acme_key "$(openssl genrsa 4096)"
+    pritunl set app.acme_domain ${ACME_DOMAIN}
+fi
+
 pritunl start
