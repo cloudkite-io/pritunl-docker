@@ -1,7 +1,7 @@
 #!/bin/sh
 
-if [ ! -z "$MONGODB_USER" ] && [ ! -z "$MONGODB_PWD" ]; then
-	export MONGO_AUTH="$MONGODB_USER:$MONGODB_PWD@"
+if [ ! -z "$MONGODB_USER" ] && [ ! -z "$MONGODB_PASS" ]; then
+	export MONGODB_AUTH="$MONGODB_USER:$MONGODB_PASS@"
 fi
 
 pritunl set-mongodb mongodb://${MONGODB_AUTH:-""}${MONGODB_SERVER:-"mongo"}:${MONGODB_PORT:-"27017"}/${MONGODB_NAME:-"pritunl"}
