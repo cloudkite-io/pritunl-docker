@@ -4,7 +4,7 @@ if [ ! -z "$MONGODB_USER" ] && [ ! -z "$MONGODB_PASS" ]; then
 	export MONGODB_AUTH="$MONGODB_USER:$MONGODB_PASS@"
 fi
 
-pritunl set-mongodb mongodb://${MONGODB_AUTH:-""}${MONGODB_SERVER:-"mongo"}:${MONGODB_PORT:-"27017"}/${MONGODB_NAME:-"pritunl"}
+pritunl set-mongodb mongodb://${MONGODB_AUTH:-""}${MONGODB_SERVER:-"mongo"}:${MONGODB_PORT:-"27017"}/${MONGODB_NAME:-"pritunl"}?${MONGODB_OPTIONS:-""}
 
 # get actual port, get value from line and trim spaces
 actual_server_port=$(pritunl get app.server_port | cut -d "=" -f2 | awk '{$1=$1};1')
