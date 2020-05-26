@@ -10,6 +10,7 @@ services:
     restart: always
     volumes:
       - /opt/mongo/data:/data/db
+      - /opt/pritunl/data:/var/lib/pritunl
   pritunl:
     container_name: pritunl
     build: .
