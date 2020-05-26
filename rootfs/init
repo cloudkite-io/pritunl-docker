@@ -12,11 +12,13 @@ if [[ "$actual_server_port" -ne "${SERVER_PORT:-443}" ]]; then
     pritunl set app.server_port ${SERVER_PORT:-443}
 fi
 
-if [[ ! -z "${LIC_SERVER:-""}" ]]; then
+lic_server=$(pritunl get app.dedicated | cut -d "=" -f2 | awk '{$1=$1};1')
+if [[ ! -z "${LIC_SERVER:-""}" ]] && [[ "$lic_server" -ne "${LIC_SERVER:-""}" ]]; then
     pritunl set app.dedicated ${LIC_SERVER:-""}
 fi
 
-if [[ ! -z "${LIC_KEY:-""}" ]]; then
+lic_key=$(pritunl get app.license | cut -d "=" -f2 | awk '{$1=$1};1')
+if [[ ! -z "${LIC_KEY:-""}" ]] && [[ "$lic_key" -ne "${LIC_KEY:-""}" ]]; then
     pritunl set app.license ${LIC_KEY:-""}
 fi
 
