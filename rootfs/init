@@ -6,24 +6,25 @@ fi
 
 pritunl set-mongodb mongodb://${MONGODB_AUTH:-""}${MONGODB_SERVER:-"mongo"}:${MONGODB_PORT:-"27017"}/${MONGODB_NAME:-"pritunl"}?${MONGODB_OPTIONS:-""}
 
-# get actual port, get value from line and trim spaces
+# get actual port | get value from line | trim spaces
 actual_server_port=$(pritunl get app.server_port | cut -d "=" -f2 | awk '{$1=$1};1')
 if [[ "$actual_server_port" -ne "${SERVER_PORT:-443}" ]]; then
     pritunl set app.server_port ${SERVER_PORT:-443}
 fi
 
-lic_server="$(pritunl get app.dedicated | cut -d "=" -f2 | awk '{$1=$1};1')"
-if [[ ! -z "${LIC_SERVER:-""}" ]] && [[ "$lic_server" -ne "${LIC_SERVER:-""}" ]]; then
+# get property | get value | trim | remove quotes 
+lic_server="$(pritunl get app.dedicated | cut -d "=" -f2 | awk '{$1=$1};1' | sed -e 's/^"//' -e 's/"$//')"
+if [ ! -z "${LIC_SERVER:-""}" ] && [ "$lic_server" != "${LIC_SERVER:-""}" ]; then
     pritunl set app.dedicated ${LIC_SERVER:-""}
 fi
 
-lic_key="$(pritunl get app.license | cut -d "=" -f2 | awk '{$1=$1};1')"
-if [[ ! -z "${LIC_KEY:-""}" ]] && [[ "$lic_key" -ne "${LIC_KEY:-""}" ]]; then
+lic_key="$(pritunl get app.license | cut -d "=" -f2 | awk '{$1=$1};1'| sed -e 's/^"//' -e 's/"$//')"
+if [ ! -z "${LIC_KEY:-""}" ] && [ "$lic_key" != "${LIC_KEY:-""}" ]; then
     pritunl set app.license ${LIC_KEY:-""}
 fi
 
-actual_acme_domain="$(pritunl get app.acme_domain | cut -d "=" -f2 | awk '{$1=$1};1')"
-if [[ ! -z "${ACME_DOMAIN:""}" ]] && [[ "$actual_acme_domain" -ne "${ACME_DOMAIN}" ]] ; then
+actual_acme_domain="$(pritunl get app.acme_domain | cut -d "=" -f2 | awk '{$1=$1};1' | sed -e 's/^"//' -e 's/"$//')"
+if [ ! -z "${ACME_DOMAIN:""}" ] && [ "$actual_acme_domain" != "${ACME_DOMAIN}" ] ; then
     pritunl set app.acme_timestamp $(date +%s)
     pritunl set app.acme_key "$(openssl genrsa 4096)"
     pritunl set app.acme_domain ${ACME_DOMAIN}
