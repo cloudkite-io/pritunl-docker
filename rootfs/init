@@ -12,6 +12,14 @@ if [[ "$actual_server_port" -ne "${SERVER_PORT:-443}" ]]; then
     pritunl set app.server_port ${SERVER_PORT:-443}
 fi
 
+if [[ ! -z "${LIC_SERVER:-""}" ]]; then
+    pritunl set app.dedicated ${LIC_SERVER:-""}
+fi
+
+if [[ ! -z "${LIC_KEY:-""}" ]]; then
+    pritunl set app.license ${LIC_KEY:-""}
+fi
+
 actual_acme_domain=$(pritunl get app.acme_domain | cut -d "=" -f2 | awk '{$1=$1};1')
 if [[ ! -z "${ACME_DOMAIN:""}" ]] && [[ "$actual_acme_domain" -ne "${ACME_DOMAIN}" ]] ; then
     pritunl set app.acme_timestamp $(date +%s)
