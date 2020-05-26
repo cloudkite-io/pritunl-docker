@@ -34,6 +34,4 @@ if [ ! -z "${APP_ID:-""}" ]; then
     pritunl set app.id ${APP_ID:-""}
 fi
 
-pritunl set app.id "kimsufi-0"
-
 pritunl start
