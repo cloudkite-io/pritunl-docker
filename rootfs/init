@@ -30,8 +30,4 @@ if [ ! -z "${ACME_DOMAIN:""}" ] && [ "$actual_acme_domain" != "${ACME_DOMAIN}" ]
     pritunl set app.acme_domain ${ACME_DOMAIN}
 fi
 
-if [ ! -z "${HOST_ID:-""}" ]; then
-    pritunl set local.host_id ${HOST_ID:-""}
-fi
-
 pritunl start
