@@ -14,6 +14,7 @@ RUN pip install --upgrade pip
 RUN export GOPATH=/go \
     && go get github.com/pritunl/pritunl-dns \
     && go get github.com/pritunl/pritunl-web \
+    && go get github.com/pritunl/pritunl-link \
     && cp /go/bin/* /usr/bin/ 
 
 RUN wget https://github.com/pritunl/pritunl/archive/${VERSION}.tar.gz \
