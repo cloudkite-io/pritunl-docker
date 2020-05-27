@@ -1,9 +1,12 @@
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: pritunl
   namespace: infrastructure
 spec:
+  selector:
+    matchLabels:
+      app: pritunl
   template:
     metadata:
       labels:
@@ -11,7 +14,7 @@ spec:
     spec:
       terminationGracePeriodSeconds: 60
       containers:
-        - image: docker.io/victortrac/pritunl
+        - image: docker.io/redavtovo/pritunl
           name: pritunl
           imagePullPolicy: Always
           env:

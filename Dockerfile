@@ -1,5 +1,5 @@
 FROM alpine:3.10
-MAINTAINER Victor Trac <victor@cloudkite.io>
+MAINTAINER red <red.avtovo@gmail.com>
 
 ENV VERSION="1.29.2435.70"
 
