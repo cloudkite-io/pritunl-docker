@@ -3,8 +3,8 @@
 if [[ ! -z "$MONGODB_USER" ]] && [[ ! -z "$MONGODB_PASS" ]]; then
 	export MONGODB_AUTH="$MONGODB_USER:$MONGODB_PASS@"
 fi
-export DB="mongodb://${MONGODB_AUTH:-""}${MONGODB_SERVER:-"mongo"}:${MONGODB_PORT:-"27017"}/${MONGODB_NAME:-"pritunl"}"
-export DB_WITH_OPTIONS="$DB?${MONGODB_OPTIONS:-""}"
+export RAW_DB="mongodb://${MONGODB_AUTH:-""}${MONGODB_SERVER:-"mongo"}:${MONGODB_PORT:-"27017"}/${MONGODB_NAME:-"pritunl"}"
+export DB_WITH_OPTIONS="$RAW_DB?${MONGODB_OPTIONS:-""}"
 pritunl set-mongodb $DB_WITH_OPTIONS
 
 # get actual port | get value from line | trim spaces
