@@ -7,6 +7,10 @@ export RAW_DB="mongodb://${MONGODB_AUTH:-""}${MONGODB_SERVER:-"mongo"}:${MONGODB
 export DB_WITH_OPTIONS="$RAW_DB?${MONGODB_OPTIONS:-""}"
 pritunl set-mongodb $DB_WITH_OPTIONS
 
+if [[ ! -z "$ENABLE_DNS" ]]; then
+	export DB=${RAW_DB}
+fi
+
 # get actual port | get value from line | trim spaces
 actual_server_port=$(pritunl get app.server_port | cut -d "=" -f2 | awk '{$1=$1};1')
 if [[ "$actual_server_port" -ne "${SERVER_PORT:-443}" ]]; then
