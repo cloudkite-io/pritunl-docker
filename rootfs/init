@@ -3,7 +3,13 @@
 if [[ ! -z "$MONGODB_USER" ]] && [[ ! -z "$MONGODB_PASS" ]]; then
 	export MONGODB_AUTH="$MONGODB_USER:$MONGODB_PASS@"
 fi
+
 export RAW_DB="mongodb://${MONGODB_AUTH:-""}${MONGODB_SERVER:-"mongo"}:${MONGODB_PORT:-"27017"}/${MONGODB_NAME:-"pritunl"}"
+
+if [[ ! -z "$MONGODB_URL" ]]; then
+	export RAW_DB=$MONGODB_URL
+fi
+
 export DB_WITH_OPTIONS="$RAW_DB?${MONGODB_OPTIONS:-""}"
 pritunl set-mongodb $DB_WITH_OPTIONS
 
