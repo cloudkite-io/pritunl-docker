@@ -22,7 +22,7 @@ RUN wget https://github.com/pritunl/pritunl/archive/${VERSION}.tar.gz \
     && cd pritunl-${VERSION} \
     && python setup.py build \
     && pip install -r requirements.txt \
-    && pip install pymongo[srv] \ # for mongodb+srv:// URIs
+    && pip install pymongo[srv] \
     && python2 setup.py install \
     && cd .. \
     && rm -rf *${VERSION}* \
