@@ -4,7 +4,7 @@ MAINTAINER red <red.avtovo@gmail.com>
 ENV VERSION="1.29.2435.70"
 
 # Build deps
-RUN apk --no-cache add --update go git bzr wget py2-pip \ 
+RUN apk --no-cache add --update go git bzr wget py2-pip ip6tables \
     gcc python python-dev make musl-dev linux-headers libffi-dev openssl-dev \
     py-setuptools openssl procps ca-certificates openvpn 
     
