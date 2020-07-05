@@ -15,7 +15,8 @@ RUN export GOPATH=/go \
     && go get github.com/pritunl/pritunl-dns \
     && go get github.com/pritunl/pritunl-web \
     && go get github.com/pritunl/pritunl-link \
-    && cp /go/bin/* /usr/bin/ 
+    && cp /go/bin/* /usr/bin/ \
+    && rm -rf /go
 
 RUN wget https://github.com/pritunl/pritunl/archive/${VERSION}.tar.gz \
     && tar zxvf ${VERSION}.tar.gz \
