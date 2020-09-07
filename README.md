@@ -13,3 +13,6 @@ Run Pritunl in a docker container.
     docker-compose up --build
 
 The admin console is now available at `https://<ip>`, `pritunl`/`pritunl`.
+
+Releases ref: https://github.com/pritunl/pritunl/releases
+Image ref: https://hub.docker.com/r/redavtovo/pritunl
