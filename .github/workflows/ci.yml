@@ -1,0 +1,42 @@
+name: CI
+on: [push]
+#  push:
+#    branches:
+#      - master
+
+env:
+  DOCKER_IMAGE: docker.io/redavtovo/pritunl
+
+jobs:
+  build_and_push:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Set Vars
+        id: vars
+        run: |
+          echo ::set-output name=sha_short::$(git rev-parse --short=6 ${{ github.sha }})
+          echo ::set-output name=PRITUNL_VERSION::$(cat Dockerfile | grep "ENV VERSION" | cut -d= -f2 | sed 's/"//g')
+
+      - name: Docker build
+        run: |
+          echo "Building Pritunl docker version: ${{ steps.vars.outputs.PRITUNL_VERSION }}"
+          docker build \
+          -t ${DOCKER_IMAGE}:${{ steps.vars.outputs.sha_short }} .
+
+      - name: Docker login
+        if: github.ref == 'refs/heads/master'
+        uses: azure/docker-login@v1
+        with:
+          username: ${{ secrets.REGISTRY_USERNAME }}
+          password: ${{ secrets.REGISTRY_PASSWORD }}
+
+      - name: Push image
+        if: github.ref == 'refs/heads/master'
+        run: |
+          docker tag ${DOCKER_IMAGE}:${{ steps.vars.outputs.sha_short }} ${DOCKER_IMAGE}:${{ steps.vars.outputs.PRITUNL_VERSION }}
+          docker tag ${DOCKER_IMAGE}:${{ steps.vars.outputs.sha_short }} ${DOCKER_IMAGE}:latest
+          docker push ${DOCKER_IMAGE}:${{ steps.vars.outputs.sha_short }}
+          docker push ${DOCKER_IMAGE}:${{ steps.vars.outputs.PRITUNL_VERSION }}
+          docker push ${DOCKER_IMAGE}:latest
