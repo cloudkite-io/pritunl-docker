@@ -10,11 +10,13 @@ RUN apk --no-cache add --update go git bzr wget py2-pip \
     
 RUN pip install --upgrade pip 
 
+# Install go
+COPY --from=golang:1.13-alpine /usr/local/go/ /usr/local/go/
+ENV PATH="/usr/local/go/bin:${PATH}"
+
 # Pritunl Install
-RUN export GOPATH=/go \
-    && go get github.com/pritunl/pritunl-dns \
-    && go get github.com/pritunl/pritunl-web \
-    && cp /go/bin/* /usr/bin/ 
+RUN go get github.com/pritunl/pritunl-dns \
+    && go get github.com/pritunl/pritunl-web
 
 RUN wget https://github.com/pritunl/pritunl/archive/${VERSION}.tar.gz \
     && tar zxvf ${VERSION}.tar.gz \
