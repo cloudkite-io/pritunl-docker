@@ -10,8 +10,7 @@ RUN apk --no-cache add --update go git wget py3-pip \
     gcc python3 python3-dev cargo make musl-dev linux-headers libffi-dev openssl-dev \
     py-setuptools openssl procps ca-certificates openvpn 
     
-RUN pip install --upgrade pip \
-    && pip install cryptography
+RUN pip install --upgrade pip
 
 # Pritunl Install
 RUN export GOPATH=/go \
