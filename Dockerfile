@@ -5,8 +5,9 @@ ENV VERSION="1.32.3897.75"
 
 # Build deps
 RUN apk --no-cache add --update go git breezy wget py3-pip \ 
-    gcc python3 python3-dev make musl-dev linux-headers libffi-dev openssl-dev \
-    py3-dnspython py3-requests py3-setuptools py3-six openssl procps ca-certificates openvpn
+    gcc python3 python3-dev make musl-dev linux-headers libffi-dev \
+    ipset iptables ip6tables openssl-dev py3-dnspython py3-requests \
+    py3-setuptools py3-six openssl procps ca-certificates openvpn
 
 RUN rm /usr/lib/python*/EXTERNALLY-MANAGED \
     && python3 -m ensurepip \ 
